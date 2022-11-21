@@ -4,6 +4,7 @@ import { useState } from 'react';
 import './App.scss';
 import { useBEM } from './customHooks';
 import NavigMobile from './components/navigMobile/NavigMobile';
+import NavigDesktop from './components/navigDesktop/NavigDesktop';
 
 function App() {
   const [B,E] = useBEM('App');
@@ -24,11 +25,11 @@ function App() {
   const displayNavbar = () => {
     if (width >= 1008) {
       console.log('desktop')
-      return ''
+      return <NavigDesktop/>
     }
 
     console.log('mobile')
-      return ''
+      return <NavigMobile/>
   }
 
   console.log(width)
@@ -37,7 +38,7 @@ function App() {
 
   return (
     <div className={B()}>
-      <NavigMobile/>
+      {displayNavbar()}
       {/* <header>
         <img src="images/logo.svg" alt="logo" />
       </header> */}

@@ -9,8 +9,16 @@
   display: flex;
   flex-direction: column;
 
+  overflow: hidden;
+
   &__hero-img{
     width: 100%;
+  }
+
+  main{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
   }
 
   header{
@@ -45,6 +53,7 @@
     padding: 16px 24px;
 
     border-radius: 16px;
+    width: fit-content;
   }
 
   &__hero-clients{
@@ -54,7 +63,7 @@
 
     width: 100%;
 
-    padding: 0 16px;
+    // padding: 0 16px;
 
     grid-column-gap: 16px;
 
@@ -66,5 +75,53 @@
   &__hero-clients > img{
     max-width: 100%;
     max-height: 32px;
+  }
+}
+
+@media only screen and (min-width: 1008px){
+  .App{
+    display: flex;
+
+    align-items: center;
+
+    main{
+      width: 75vw;
+      height: 80vh;
+      flex-direction: row-reverse !important;
+      justify-content: space-between;
+    }
+
+    &__hero-text{
+      position: relative;
+      text-align: left;
+      height: 100%;
+
+      width: 560px;      
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      h1{
+        font-size: 72px;
+        padding: 0;
+      }
+
+      p{
+        padding: 40px 0;
+        max-width: 476px;
+      }
+    }
+
+    &__hero-clients{
+      position: absolute;
+      bottom: 0px;
+      // justify-self: flex-end;
+    }
+
+    &__hero-img{
+      height: 100%;
+      object-fit: contain;
+    }
   }
 }
