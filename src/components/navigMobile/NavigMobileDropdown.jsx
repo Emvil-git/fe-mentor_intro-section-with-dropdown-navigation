@@ -1,20 +1,38 @@
 import { useState } from "react"
 import { useBEM } from "../../customHooks"
 
-const MobileDropdown = ({type, label}) => {
+const MobileDropdown = ({type, label, ht}) => {
     const [B,E] = useBEM('dropdown')
-    const [dropDat, setDropDat] = useState(false)
+    const [dropDat, setDropDat] = useState(null) 
+    // ^^^ accepts 3 states - null, 'open', 'close'
+    // null -> default, closed, no animations
+    // 'open' -> plays open animation
+    // 'close' -> plays close animation
 
     const openMenu = () => {
-        if (dropDat) return E('menu', 'show')
-        return E('menu')
+        switch(dropDat){
+            case 'open':
+                return E('menu', 'open')
+            case 'close':
+                return E('menu', 'close')
+            default:
+                return E('menu')
+        }
+    }
+
+    const handleClick = () => {
+        if (dropDat === 'open') {
+            setDropDat('close')
+        } else {
+            setDropDat('open')
+        }
     }
 
     const displayByType = () => {
         switch(type) {
-            case 'features':
+            case 'features':         
                 return(
-                    <menu className={openMenu()}>
+                    <menu style={{"--ht": `${ht}px`}} className={openMenu()}>
                     <li>
                         <div className={E('icon-wrap')}>
                             <img src="images/icon-todo.svg" alt="" />
@@ -47,7 +65,7 @@ const MobileDropdown = ({type, label}) => {
             
             case 'company':
                 return(
-                    <menu className={openMenu()}>
+                    <menu style={{"--ht": `${ht}px`}} className={openMenu()}>
                     <li>
                         History
                     </li>
@@ -66,7 +84,7 @@ const MobileDropdown = ({type, label}) => {
 
     return(
         <div className={B()}>
-                <section className={E('head')}>
+                <section onClick={handleClick} className={E('head')}>
                     <h2>{label}</h2>
                     <img src="images/icon-arrow-down.svg" alt="" />
                 </section>

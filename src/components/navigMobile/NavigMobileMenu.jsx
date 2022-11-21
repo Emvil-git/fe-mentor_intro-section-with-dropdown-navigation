@@ -66,9 +66,11 @@ const NavigMobileMenu = () => {
                 </menu>
             </div> */}
             
-            <MobileDropdown type='features' label="Features"/>
+            <MobileDropdown type='features' label="Features" ht={224}/>
             
-            <MobileDropdown type='company' label="Company"/>
+            <MobileDropdown type='company' label="Company" ht={151}/>
+
+            {/* NOTE: ht property is full height of the menu, used for anims because attr(value px) isn't working*/}
 
             <h2>Careers</h2>
             <h2>About</h2>
