@@ -3,14 +3,14 @@ import { useBEM } from "../../customHooks"
 
 const MobileDropdown = ({type, label, ht}) => {
     const [B,E] = useBEM('dropdown')
-    const [dropDat, setDropDat] = useState(null) 
+    const [dropDatThang, setDropDatThang] = useState(null) 
     // ^^^ accepts 3 states - null, 'open', 'close'
     // null -> default, closed, no animations
     // 'open' -> plays open animation
     // 'close' -> plays close animation
 
     const openMenu = () => {
-        switch(dropDat){
+        switch(dropDatThang){
             case 'open':
                 return E('menu', 'open')
             case 'close':
@@ -21,10 +21,10 @@ const MobileDropdown = ({type, label, ht}) => {
     }
 
     const handleClick = () => {
-        if (dropDat === 'open') {
-            setDropDat('close')
+        if (dropDatThang === 'open') {
+            setDropDatThang('close')
         } else {
-            setDropDat('open')
+            setDropDatThang('open')
         }
     }
 
