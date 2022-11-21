@@ -53,6 +53,37 @@
         padding: 16px 0;
     }
 
+    menu{
+        list-style: none;
+
+        padding-left: 24px;
+
+        li{
+            font-size: 18px;
+
+            display: flex;
+            align-items: center;
+            
+            color: $grey-med;
+
+            padding: 16px 0;
+
+            div{
+                width: 48px;
+                display: grid;
+                place-content: center;
+                margin-left: -4px;
+            }
+
+            img{
+                height: 24px;
+
+                padding-right: 16px;
+            }
+            
+        }
+    }
+
     &__dropdown{
         display: flex;
         width: fit-content;
