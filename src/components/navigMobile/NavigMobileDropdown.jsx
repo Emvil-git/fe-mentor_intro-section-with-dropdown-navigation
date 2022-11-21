@@ -28,6 +28,16 @@ const MobileDropdown = ({type, label, ht}) => {
         }
     }
 
+    const handleArrow = () => {
+        if (dropDatThang === 'open') return {
+            transform: "rotate(-180deg)",
+            paddingRight: "16px",
+            paddingLeft: "0",
+        }
+        return {}
+
+    }
+
     const displayByType = () => {
         switch(type) {
             case 'features':         
@@ -86,7 +96,7 @@ const MobileDropdown = ({type, label, ht}) => {
         <div className={B()}>
                 <section onClick={handleClick} className={E('head')}>
                     <h2>{label}</h2>
-                    <img src="images/icon-arrow-down.svg" alt="" />
+                    <img style={handleArrow()} src="images/icon-arrow-down.svg" alt="" />
                 </section>
                 
                 {displayByType()}

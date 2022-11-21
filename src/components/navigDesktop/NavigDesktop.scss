@@ -29,6 +29,13 @@
             padding: 16px 0;
 
             padding-left: 40px;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+            &:hover{
+                color: $black;
+            }
         }
 
         button{
@@ -41,10 +48,22 @@
     
             margin: 2px 0;
             padding: 12px 24px;
+
+            cursor: pointer;
     
+            transition: 0.3s;
+
+            &:hover{
+                color: $black;
+            }
+
             &:nth-of-type(2){
                 border: 2px solid $grey-med;
                 border-radius: 16px;
+
+                &:hover{
+                    border: 2px solid $black;
+                }
             }
         }
     }
@@ -59,6 +78,8 @@
     flex-direction: column;
 
     position: relative;
+
+    user-select: none;
 
     &:first-of-type{
         menu{
@@ -146,18 +167,18 @@
 
         &--open{
             height: 0px;
-            animation: dropdown-open-feat cubic-bezier(0.08,0.82,0.17,1) 0.3s 1 forwards;
+            animation: dropdown-open cubic-bezier(0.08,0.82,0.17,1) 0.3s 1 forwards;
         }
 
         &--close{
             height: var(--ht);
-            animation: dropdown-close-feat cubic-bezier(0.08,0.82,0.17,1) 0.3s 1 forwards;
+            animation: dropdown-close cubic-bezier(0.08,0.82,0.17,1) 0.3s 1 forwards;
         }
         
     }
 }
 
-@keyframes dropdown-open-feat{
+@keyframes dropdown-open{
     0%{
         height: 0px;
         box-shadow: 0 0 0 0 $grey-med50;
@@ -169,7 +190,7 @@
     }
 }
 
-@keyframes dropdown-close-feat{
+@keyframes dropdown-close{
     0%{
         height: var(--ht);
     }
