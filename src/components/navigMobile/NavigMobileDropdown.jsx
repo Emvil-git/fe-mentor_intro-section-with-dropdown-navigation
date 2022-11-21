@@ -1,20 +1,20 @@
+import { useState } from "react"
 import { useBEM } from "../../customHooks"
-import MobileDropdown from "./NavigMobileDropdown"
 
-const NavigMobileMenu = () => {
-    
-    const [B,E] = useBEM('mobile-menu')
-    
-    return (
-        <div className={B()}>
-            <div>
-            {/* <div className={E('dropdown-wrap')}>
-                <section className={E('dropdown')}>
-                    <h2>Features</h2>
-                    <img src="images/icon-arrow-down.svg" alt="" />
-                </section>
-                
-                <menu>
+const MobileDropdown = ({type, label}) => {
+    const [B,E] = useBEM('dropdown')
+    const [dropDat, setDropDat] = useState(false)
+
+    const openMenu = () => {
+        if (dropDat) return E('menu', 'show')
+        return E('menu')
+    }
+
+    const displayByType = () => {
+        switch(type) {
+            case 'features':
+                return(
+                    <menu className={openMenu()}>
                     <li>
                         <div className={E('icon-wrap')}>
                             <img src="images/icon-todo.svg" alt="" />
@@ -42,16 +42,12 @@ const NavigMobileMenu = () => {
                         </div>
                         Planning
                     </li> 
-                </menu>
-            </div> */}
+                </menu> 
+                )
             
-            {/* <div className={E('dropdown-wrap')}>
-                <section  className={E('dropdown')}>
-                    <h2>Company</h2>
-                    <img src="images/icon-arrow-down.svg" alt="" />
-                </section>
-
-                <menu>
+            case 'company':
+                return(
+                    <menu className={openMenu()}>
                     <li>
                         History
                     </li>
@@ -63,20 +59,22 @@ const NavigMobileMenu = () => {
                     <li>
                         Blog
                     </li>
-                </menu>
-            </div> */}
-            
-            <MobileDropdown type='features' label="Features"/>
-            
-            <MobileDropdown type='company' label="Company"/>
+                    </menu>
+                ) 
+        }
+    }
 
-            <h2>Careers</h2>
-            <h2>About</h2>
+    return(
+        <div className={B()}>
+                <section className={E('head')}>
+                    <h2>{label}</h2>
+                    <img src="images/icon-arrow-down.svg" alt="" />
+                </section>
+                
+                {displayByType()}
+                
             </div>
-            <button>Login</button>
-            <button>Register</button>
-        </div>
     )
 }
 
-export default NavigMobileMenu
+export default MobileDropdown

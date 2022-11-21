@@ -18,7 +18,7 @@
         justify-content: flex-end;
 
         opacity: 0;
-        animation: materialize 0.3s ease-in 1 forwards;
+        animation: materialize 0.2s ease-in 1 forwards;
         &-cont{
             width: 248px;
             transform: translateX(248px);
@@ -84,19 +84,6 @@
         }
     }
 
-    &__dropdown{
-        display: flex;
-        width: fit-content;
-
-        align-items: center;
-
-        img{
-            height: 100%;
-
-            padding: 16px
-        }
-    }
-
     button{
         font: 16px 'Epilogue';
         color: $grey-med;
@@ -108,6 +95,21 @@
         &:nth-of-type(2){
             border: 2px solid $grey-med;
             border-radius: 16px;
+        }
+    }
+}
+
+.dropdown{
+    &__head{
+        display: flex;
+        width: fit-content;
+
+        align-items: center;
+
+        img{
+            height: 100%;
+
+            padding: 16px
         }
     }
 }
