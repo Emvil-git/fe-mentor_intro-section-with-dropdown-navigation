@@ -2,6 +2,11 @@
     padding: 24px 16px;
     display: flex;
     justify-content: space-between;
+    position: sticky;
+
+    top: 0;
+
+    background: $white;
 
     &__menu{
         position: absolute;

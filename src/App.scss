@@ -3,19 +3,22 @@
 .App {
   height: 100vh;
   width: 100vw;
-  background: $white;
+  // background: $white;
   color: $black;
 
   display: flex;
   flex-direction: column;
 
-  overflow: hidden;
+  position: relative;
+
+  // overflow: hidden;
 
   &__hero-img{
     width: 100%;
   }
 
   main{
+    height: fit-content;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -63,13 +66,15 @@
 
     width: 100%;
 
-    padding: 0 16px;
+    padding: 7vh 16px;
 
     grid-column-gap: 16px;
 
-    position: absolute;
 
-    bottom: 10%;
+
+    // position: absolute;
+
+    // bottom: 10%;
   }
 
   &__hero-clients > img{
