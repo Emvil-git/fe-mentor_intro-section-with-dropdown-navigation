@@ -1,20 +1,50 @@
 
+import { useEffect } from 'react';
+import { useState } from 'react';
 import './App.scss';
 import { useBEM } from './customHooks';
-
+import NavigMobile from './components/navigMobile/NavigMobile';
 
 function App() {
   const [B,E] = useBEM('App');
+  const [width, setWidth] = useState(getWidth());
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWidth(getWidth())
+    }
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [])
+
+  const displayNavbar = () => {
+    if (width >= 1008) {
+      console.log('desktop')
+      return ''
+    }
+
+    console.log('mobile')
+      return ''
+  }
+
+  console.log(width)
+  displayNavbar()
+
 
   return (
     <div className={B()}>
-      <header>
+      <NavigMobile/>
+      {/* <header>
         <img src="images/logo.svg" alt="logo" />
-      </header>
+      </header> */}
 
       <main>
-        <picture class="prod-img">
-          <source media="(min-width: 1024px)" srcset="images/image-hero-desktop.png" className={E('hero-img', 'desktop')}/>
+        <picture>
+          <source media="(min-width: 1024px)" srcSet="images/image-hero-desktop.png" className={E('hero-img', 'desktop')}/>
           <img src="images/image-hero-mobile.png" alt="IfItDoesntMatchAnyMedia" className={E('hero-img', 'mobile')}/>
         </picture>
 
@@ -32,6 +62,11 @@ function App() {
       </main>
     </div>
   );
+}
+
+const getWidth = () => {
+  const {innerWidth} = window
+  return innerWidth
 }
 
 export default App;
