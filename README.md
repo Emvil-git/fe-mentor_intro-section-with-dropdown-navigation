@@ -1,93 +1,166 @@
-# Frontend Mentor - Intro section with dropdown navigation
+# Frontend Mentor - Intro section with dropdown navigation solution
 
-![Design preview for the Intro section with dropdown navigation coding challenge](./design/desktop-preview.jpg)
+This is a solution to the [Intro section with dropdown navigation challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/intro-section-with-dropdown-navigation-ryaPetHE5). Frontend Mentor challenges help you improve your coding skills by building realistic projects. 
 
-## Welcome! 👋
+## Table of contents
 
-Thanks for checking out this front-end coding challenge.
+- [Overview](#overview)
+  - [The challenge](#the-challenge)
+  - [Screenshot](#screenshot)
+  - [Links](#links)
+- [My process](#my-process)
+  - [Built with](#built-with)
+  - [What I learned](#what-i-learned)
+  - [Continued development](#continued-development)
+- [Author](#author)
+- [Acknowledgments](#acknowledgments)
 
-[Frontend Mentor](https://www.frontendmentor.io) challenges help you improve your coding skills by building realistic projects.
+## Overview
 
-**To do this challenge, you need a basic understanding of HTML, CSS and JavaScript.**
+### The challenge
 
-## The challenge
-
-Your challenge is to build out this intro section with dropdown navigation and get it looking as close to the design as possible.
-
-You can use any tools you like to help you complete the challenge. So if you've got something you'd like to practice, feel free to give it a go.
-
-Your users should be able to:
+Users should be able to:
 
 - View the relevant dropdown menus on desktop and mobile when interacting with the navigation links
 - View the optimal layout for the content depending on their device's screen size
 - See hover states for all interactive elements on the page
 
-Want some support on the challenge? [Join our Slack community](https://www.frontendmentor.io/slack) and ask questions in the **#help** channel.
+### Screenshot
 
-## Where to find everything
+![](./public/images/screenshot.png)
 
-Your task is to build out the project to the designs inside the `/design` folder. You will find both a mobile and a desktop version of the design. 
+**It's ✨animated✨**
 
-The designs are in JPG static format. Using JPGs will mean that you'll need to use your best judgment for styles such as `font-size`, `padding` and `margin`. 
+### Links
 
-If you would like the design files (we provide Sketch & Figma versions) to inspect the design in more detail, you can [subscribe as a PRO member](https://www.frontendmentor.io/pro).
+- Solution URL: [https://github.com/Emvil-git/fe-mentor_intro-section-with-dropdown-navigation](https://github.com/Emvil-git/fe-mentor_intro-section-with-dropdown-navigation)
+- Live Site URL: [https://fe-mentor-intro-section-with-dropdown-navigation.vercel.app/](https://fe-mentor-intro-section-with-dropdown-navigation.vercel.app/)
 
-You will find all the required assets in the `/images` folder. The assets are already optimized.
+### Built with
 
-There is also a `style-guide.md` file containing the information you'll need, such as color palette and fonts.
+- Flexbox
+- CSS Grid
+- Mobile-first workflow
+- [React](https://reactjs.org/) - JS library
+- [Sass](https://sass-lang.com/) - For styles
+- [BEM](https://getbem.com/) 
 
-## Building your project
+**I use a custom BEM hook to make naming classes cleaner**
 
-Feel free to use any workflow that you feel comfortable with. Below is a suggested process, but do not feel like you need to follow these steps:
+Here's how it looks like in Javascript..
 
-1. Initialize your project as a public repository on [GitHub](https://github.com/). Creating a repo will make it easier to share your code with the community if you need help. If you're not sure how to do this, [have a read-through of this Try Git resource](https://try.github.io/).
-2. Configure your repository to publish your code to a web address. This will also be useful if you need some help during a challenge as you can share the URL for your project with your repo URL. There are a number of ways to do this, and we provide some recommendations below.
-3. Look through the designs to start planning out how you'll tackle the project. This step is crucial to help you think ahead for CSS classes to create reusable styles.
-4. Before adding any styles, structure your content with HTML. Writing your HTML first can help focus your attention on creating well-structured content.
-5. Write out the base styles for your project, including general content styles, such as `font-family` and `font-size`.
-6. Start adding styles to the top of the page and work down. Only move on to the next section once you're happy you've completed the area you're working on.
+```js
+    const [B,E] = useBEM('nav-desktop')
 
-## Deploying your project
+    return(
+        <div className={B()}>
+            <img className={E('logo')} src="images/logo.svg" alt="logo" />
+        </div>
+    )
+```
 
-As mentioned above, there are many ways to host your project for free. Our recommend hosts are:
+Here's how I would style it in CSS
+```css
+.nav-desktop{
+    /* Some styling for the block */
 
-- [GitHub Pages](https://pages.github.com/)
-- [Vercel](https://vercel.com/)
-- [Netlify](https://www.netlify.com/)
+    &__logo{
+        /* Some styling for the element */
 
-You can host your site using one of these solutions or any of our other trusted providers. [Read more about our recommended and trusted hosts](https://medium.com/frontend-mentor/frontend-mentor-trusted-hosting-providers-bf000dfebe).
+        &--zoom{
+            /* Some styling if I have any modifiers */
+        }
+    }
+}
+```
 
-## Create a custom `README.md`
+### What I learned
 
-We strongly recommend overwriting this `README.md` with a custom one. We've provided a template inside the [`README-template.md`](./README-template.md) file in this starter code.
+The highlight of this project to me was coding the animations for the mobile navbar menu and the 
+dropdown menus. I couldn't make attr() work in css but I found a way to make it work.
 
-The template provides a guide for what to add. A custom `README` will help you explain your project and reflect on your learnings. Please feel free to edit our template as much as you like.
+This is how I handled the state of the sliding menu:
 
-Once you've added your information to the template, delete this file and rename the `README-template.md` file to `README.md`. That will make it show up as your repository's README file.
+```js
+const [slideDatThang, setSlideDatThang] = useState(null) 
 
-## Submitting your solution
+const openMenu = () => {
+    switch(slideDatThang){
+        case 'open':
+            return E('menu', 'open')
+        case 'close':
+            return E('menu', 'close')
+        default:
+            return E('menu')
+    }
+}
 
-Submit your solution on the platform for the rest of the community to see. Follow our ["Complete guide to submitting solutions"](https://medium.com/frontend-mentor/a-complete-guide-to-submitting-solutions-on-frontend-mentor-ac6384162248) for tips on how to do this.
+const openMenuCont = () => {
+    switch(slideDatThang){
+        case 'open':
+            return E('menu-cont', 'open')
+        case 'close':
+            return E('menu-cont', 'close')
+        default:
+            return E('menu-cont')
+    }
+}
+```
+And example of how I do the styling (This is the "darkening" container for the sliding menu)
 
-Remember, if you're looking for feedback on your solution, be sure to ask questions when submitting it. The more specific and detailed you are with your questions, the higher the chance you'll get valuable feedback from the community.
+```css
+...
+    &__menu{ // This is where I would put the initial close state styling
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        height: 100vh;
+        width: 100vw;
+        background-color: $black50;
+        z-index: 3;
 
-## Sharing your solution
+        display: flex;
+        justify-content: flex-end;
 
-There are multiple places you can share your solution:
+        opacity: 0;
+        display: none;
 
-1. Share your solution page in the **#finished-projects** channel of the [Slack community](https://www.frontendmentor.io/slack). 
-2. Tweet [@frontendmentor](https://twitter.com/frontendmentor) and mention **@frontendmentor**, including the repo and live URLs in the tweet. We'd love to take a look at what you've built and help share it around.
-3. Share your solution on other social channels like LinkedIn.
-4. Blog about your experience building your project. Writing about your workflow, technical choices, and talking through your code is a brilliant way to reinforce what you've learned. Great platforms to write on are [dev.to](https://dev.to/), [Hashnode](https://hashnode.com/), and [CodeNewbie](https://community.codenewbie.org/).
+        overflow: hidden; 
 
-We provide templates to help you share your solution once you've submitted it on the platform. Please do edit them and include specific questions when you're looking for feedback. 
+        &--open{ 
+            opacity: 0; // The opacity would be filled out by the end of the animation...
+            display: flex !important;
+            animation: materialize 0.2s ease-in 1 forwards;
+        }
 
-The more specific you are with your questions the more likely it is that another member of the community will give you feedback.
+        &--close{
+            opacity: 1; // Same here but the opposite would happen as the menu is closed..
+            display: flex !important;
+            animation: dematerialize 0.2s ease-in 0.3s 1 forwards;
+        }
+    }
+```
 
-## Got feedback for us?
+The pattern is basically the same for the dropdown menus, with three states - initial, open, and closing.
 
-We love receiving feedback! We're always looking to improve our challenges and our platform. So if you have anything you'd like to mention, please email hi[at]frontendmentor[dot]io.
+The reason for this is because I don't want to see the closing animation play out as it would if I had done only two states - open and closed.
 
-This challenge is completely free. Please share it with anyone who will find it useful for practice.
+### Continued development
 
-**Have fun building!** 🚀
+From what I've learned here, I want to do more dynamic animations in future projects. Animations can
+be meticulous and a bit time-crunchy for me to implement in React but I've heard of some tools that can
+help with that such as GSAP that I'm excited to try in future projects.
+
+Besides that, I also want to learn more about keeping my code clean as I'm not exactly satisfied with
+how "messy" I've handled the animation states - too many functions in my opinion.
+
+## Author
+
+- Website - [Emvil-git](https://www.your-site.com)
+- Frontend Mentor - [@Emvil-git](https://www.frontendmentor.io/profile/Emvil-git)
+
+## Acknowledgments
+
+I would like to thank [The 1975](https://open.spotify.com/artist/3mIj9lX2MWuHmhNCA7LSCW?si=hm5NPkZqT92fJ3hr_a7qGw) for providing the jams while I was working on this project. Pretty fun stuff.
+
